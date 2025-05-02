@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="ELVA - חנות בגדים ישראלית ייחודית עם קולקציות מטורפות. קנו אונליין!">
+  <title>ELVA | חנות בגדים פסיכית</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>ברוכים הבאים ל-ELVA</h1>
+    <p>סטייל שצועק. בגדים שמדברים.</p>
+    <a href="#shop" class="btn">קנה עכשיו</a>
+  </header>
+
+  <section id="shop" class="products">
+    <h2>הקולקציה שלנו</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="https://via.placeholder.com/300x400" alt="חולצה">
+        <h3>חולצת סטייל</h3>
+        <p>₪99</p>
+        <button onclick="selectProduct('חולצת סטייל')">הוסף לסל</button>
+      </div>
+      <div class="product">
+        <img src="https://via.placeholder.com/300x400" alt="מעיל">
+        <h3>מעיל בומבר</h3>
+        <p>₪249</p>
+        <button onclick="selectProduct('מעיל בומבר')">הוסף לסל</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>הזמן עכשיו</h2>
+    <form onsubmit="sendOrder(); return false;">
+      <input type="text" id="name" placeholder="השם שלך" required>
+      <input type="text" id="phone" placeholder="מספר טלפון שלך" required>
+      <input type="text" id="address" placeholder="כתובת משלוח" required>
+      <input type="text" id="product" placeholder="מה ברצונך להזמין?" required>
+      <button type="submit">שלח הזמנה</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>ELVA &copy; 2025 | כל הזכויות שמורות</p>
+  </footer>
+
+  <script>
+    function selectProduct(productName) {
+      document.getElementById("product").value = productName;
+      window.scrollTo({
+        top: document.querySelector(".contact").offsetTop,
+        behavior: 'smooth'
+      });
+    }
+
+    function sendOrder() {
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const address = document.getElementById("address").value;
+      const product = document.getElementById("product").value;
+
+      const message = `שלום איליי, יש לך הזמנה חדשה מ-ELVA:\n\n👤 שם הלקוח: ${name}\n📞 טלפון: ${phone}\n📦 מוצר: ${product}\n🏠 כתובת: ${address}`;
+      const yourPhone = "972587009055"; // הקידומת הבינ"ל של ישראל + המספר שלך
+      const url = `https://wa.me/${yourPhone}?text=${encodeURIComponent(message)}`;
+
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
